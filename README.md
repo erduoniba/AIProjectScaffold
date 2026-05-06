@@ -25,7 +25,7 @@ Every phase has Markdown templates with prompts the AI fills in collaboratively 
 **A. Manual** — clone, copy the directory into your new project, start filling `1_Thinks/problem_definition.md`.
 
 ```bash
-git clone <this-repo> my-new-app
+git clone https://github.com/erduoniba/AIProjectScaffold.git my-new-app
 cd my-new-app
 # open AI_GUIDE.md in your AI tool, follow the workflow
 ```
@@ -34,7 +34,7 @@ cd my-new-app
 
 ```bash
 # 1. Clone this repo somewhere stable
-git clone <this-repo> ~/code/AIProjectScaffold
+git clone https://github.com/erduoniba/AIProjectScaffold.git ~/code/AIProjectScaffold
 
 # 2. Tell Claude Code where it lives, in ~/.claude/settings.json
 {
@@ -111,7 +111,7 @@ Read [`AI_GUIDE.md`](./AI_GUIDE.md) for the full rules.
 
 ```bash
 # 1. 克隆本仓库到新项目
-git clone <repo-url> my-new-app
+git clone https://github.com/erduoniba/AIProjectScaffold.git my-new-app
 cd my-new-app
 
 # 2. 删除本仓库的 .git，重新初始化
@@ -128,7 +128,7 @@ rm -rf .git && git init
 **1. 把脚手架放到一个稳定路径**
 
 ```bash
-git clone <repo-url> ~/code/AIProjectScaffold
+git clone https://github.com/erduoniba/AIProjectScaffold.git ~/code/AIProjectScaffold
 ```
 
 **2. 在 `~/.claude/settings.json` 中声明路径**

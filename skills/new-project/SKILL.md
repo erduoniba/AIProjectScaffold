@@ -51,14 +51,51 @@ If `project_name` is missing, ask the user for it before continuing. Do not gues
    Note the trailing `/.` on the source — this copies the contents, not the source directory itself.
 
 4. **Strip source-repo artifacts** that should not appear in a generated project:
-   - Remove `<target_path>/.git/` if present (the user will init their own repo).
-   - Remove `<target_path>/LICENSE` (the new project picks its own license).
-   - Remove `<target_path>/skills/` if it was copied (the skill is for the scaffold repo, not for downstream projects).
+   - `<target_path>/.git/` — the scaffold's git history (user will `git init` their own)
+   - `<target_path>/LICENSE` — the scaffold's MIT license (new project picks its own)
+   - `<target_path>/skills/` — the `new-project` skill is for the scaffold repo itself, not downstream projects
+   - `<target_path>/.github/` if present — scaffold CI/issue templates do not transfer
 
-5. **Personalize the new project's `README.md`**:
-   - Replace the first H1 (`# AIProjectScaffold`) with `# <project_name>`.
-   - Replace the tagline lines with the user-provided `--tagline` if given; otherwise leave a `> TODO: 一句话项目介绍` placeholder.
-   - Optionally trim the bilingual section: keep only the language section the user prefers if they ask. Default: keep both.
+   ```bash
+   rm -rf "<target_path>/.git" "<target_path>/LICENSE" "<target_path>/skills" "<target_path>/.github"
+   ```
+
+5. **Replace the copied `README.md` with a slim project README** (do NOT try to edit the scaffold's bilingual open-source README — just overwrite it). Use this template, substituting `<project_name>` and `<tagline>`:
+
+   ````markdown
+   # <project_name>
+
+   > <tagline or "TODO: 一句话项目介绍">
+
+   本项目遵循 [AIProjectScaffold](https://github.com/erduoniba/AIProjectScaffold) 工作流。AI 协作请先阅读根目录的 [`AI_GUIDE.md`](./AI_GUIDE.md)。
+
+   ## 当前阶段
+
+   ```
+   [x] 1_Thinks     ← 进行中：定义问题、用户、价值
+   [ ] 2_Prds
+   [ ] 3_Designs
+   [ ] 4_Codes
+   [ ] 5_Tests
+   [ ] 6_Release
+   ```
+
+   ## 目录
+
+   ```
+   .
+   ├── AI_GUIDE.md      # AI 工作总纲
+   ├── 0_Docs/          # 参考资料
+   ├── 1_Thinks/        # 构思
+   ├── 2_Prds/          # 产品需求
+   ├── 3_Designs/       # 设计
+   ├── 4_Codes/         # 代码
+   ├── 5_Tests/         # 测试
+   └── 6_Release/       # 发布
+   ```
+   ````
+
+   If `--tagline` was not provided, keep the `TODO: 一句话项目介绍` placeholder — do not invent one.
 
 6. **Verify**: list the created tree (`find <target_path> -type f | sort`) and confirm key files exist (`AI_GUIDE.md`, `1_Thinks/problem_definition.md`, etc.).
 
